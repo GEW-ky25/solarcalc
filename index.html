@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SolarCalc - Cayman Islands</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="sticky-header">
+    <img src="logo.png" alt="SolarCalc Logo" class="logo" /> <!-- Replace with AI logo -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Calculator</a></li>
+        <li><a href="inverter.html">Inverter Sizing</a></li>
+      </ul>
+    </nav>
+  </header>
+   <main class="main-flex">
+  <div class="image-side">
+   <img src="electrician.png" alt="Electrician" class="side-image" />
+  </div>
+  <section class="calculator">
+      <h1>SolarCalc</h1>
+      <p>Power your home with the sun ☀️</p>
+      <label for="usage">Monthly Electricity Usage (kWh):</label>
+      <input type="number" id="usage" placeholder="e.g. 200">
+
+      <label for="wattage">Solar Panel Wattage (W):</label>
+      <input type="number" id="wattage" placeholder="e.g. 80">
+
+      <label for="sunlight">Average Sunlight Hours per Day:</label>
+      <input type="number" id="sunlight" placeholder="e.g. 10">
+
+      <button onclick="calculate()">Calculate</button>
+
+      <div id="result"></div>
+    </section>
+  </main>
+
+  <footer>
+    Power your home with the sun ☀️
+  </footer>
+
+  <script>
+    function calculate() {
+      const usage = parseFloat(document.getElementById('usage').value);
+      const wattage = parseFloat(document.getElementById('wattage').value);
+      const sunlight = parseFloat(document.getElementById('sunlight').value);
+
+      if (!usage || !wattage || !sunlight) {
+        document.getElementById('result').innerHTML = "<p>Please fill in all fields.</p>";
+        return;
+      }
+
+      const dailyUsage = usage / 30;
+      const totalWattHoursPerDay = wattage * sunlight;
+      const numPanels = Math.ceil(dailyUsage * 1000 / totalWattHoursPerDay);
+      const inverterSize = (numPanels * wattage) / 1000;
+
+      document.getElementById('result').innerHTML = `
+        <p>Estimated Number of Panels: <strong>${numPanels}</strong></p>
+        <p>Recommended Inverter Size: <strong>${inverterSize.toFixed(2)} kW</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
+

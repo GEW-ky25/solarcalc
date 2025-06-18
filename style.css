@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #5e17eb;
+  color: white;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #5e17eb;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  border-bottom: 2px solid #FFC300;
+}
+
+.logo {
+  height: 105px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #FFC300;
+}
+
+main {
+  padding: 30px 20px;
+}
+
+.calculator {
+  background: rgba(256, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.calculator h1 {
+  color: #FFC300;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  background-color: #FFC300;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e0b000;
+}
+
+footer {
+  background-color: #FFC300;
+  color: black;
+  padding: 15px;
+  text-align: center;
+  font-style: italic;
+}
+
+.main-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.image-side {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-image {
+  width: auto;
+  height: 90vh; /* makes the image tall enough to reach near the footer */
+  object-fit: cover;
+  border-radius: 0; /* removes rounded corners */
+  box-shadow: none; /* removes the faint border/shadow */
+}

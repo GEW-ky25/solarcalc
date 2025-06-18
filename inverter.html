@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SolarCalc - Inverter Sizing</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Background with faint yellow lightning pattern */
+    body {
+      position: relative;
+      background-color: #5e17eb;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      background-image: url('sun.png');
+      background-repeat: repeat;
+      background-size: 80px 80px;
+      opacity: 0.25; /* faint */
+      filter: hue-rotate(60deg) brightness(1.5); /* subtle yellow tint */
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 80px auto 40px auto;
+      background-color: rgba(0, 31, 63, 0.85); /* dark overlay */
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    h1, p {
+      margin: 0 0 15px 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #001f3f;
+      background-color: #FFC51B;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e6b617;
+    }
+
+    #inverterResult {
+      margin-top: 25px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #FFC51B;
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky-header">
+    <img src="logo.png" alt="SolarCalc Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Calculator</a></li>
+        <li><a href="inverter.html" class="active">Inverter Sizing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Inverter Sizing Calculator</h1>
+    <p>Calculate the recommended inverter size for your solar system.</p>
+
+    <label for="totalWattage">Total Solar Panel Wattage (W):</label>
+    <input type="number" id="totalWattage" placeholder="e.g. 2000" />
+
+    <label for="systemVoltage">System Voltage (V):</label>
+    <input type="number" id="systemVoltage" placeholder="e.g. 48" />
+
+    <label for="safetyFactor">Safety Factor (typically 1.2):</label>
+    <input type="number" step="0.1" id="safetyFactor" placeholder="e.g. 1.2" value="1.2" />
+
+    <button onclick="calculateInverter()">Calculate</button>
+
+    <div id="inverterResult"></div>
+  </main>
+
+  <footer>
+    Power your home with the sun ☀️
+  </footer>
+
+  <script>
+    function calculateInverter() {
+      const totalWattage = parseFloat(document.getElementById('totalWattage').value);
+      const systemVoltage = parseFloat(document.getElementById('systemVoltage').value);
+      const safetyFactor = parseFloat(document.getElementById('safetyFactor').value);
+
+      if (!totalWattage || !systemVoltage || !safetyFactor) {
+        document.getElementById('inverterResult').innerHTML = "<p>Please fill in all fields.</p>";
+        return;
+      }
+
+      const inverterAmps = (totalWattage * safetyFactor) / systemVoltage;
+      const inverterKw = (totalWattage * safetyFactor) / 1000;
+
+      document.getElementById('inverterResult').innerHTML = `
+        <p>Recommended Inverter Current: <strong>${inverterAmps.toFixed(2)} A</strong></p>
+        <p>Recommended Inverter Power: <strong>${inverterKw.toFixed(2)} kW</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
