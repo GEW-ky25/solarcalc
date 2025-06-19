@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="sticky-header">
-    <img src="logo.png" alt="SolarCalc Logo" class="logo" /> <!-- Replace with AI logo -->
+    <img src="logo.png" alt="SolarCalc Logo" class="logo" />
     <nav>
       <ul>
         <li><a href="index.html">Calculator</a></li>
@@ -60,7 +60,8 @@
 
       document.getElementById('result').innerHTML = `
         <p>Estimated Number of Panels: <strong>${numPanels}</strong></p>
-        <p>Recommended Inverter Size: <strong>${inverterSize.toFixed(2)} kW</strong></p>
+        <p>Estimated DC Array Power: <strong>${inverterSize.toFixed(2)} kW</strong></p>
+        <p><em>This is the total DC power your panels will produce.An inverter converts this DC power to AC, which is needed for most household appliances.</em></p>
       `;
     }
   </script>
